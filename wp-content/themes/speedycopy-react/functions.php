@@ -25,6 +25,12 @@ function speedycopy_react_assets() {
 }
 add_action('wp_enqueue_scripts','speedycopy_react_assets');
 
+add_action('wp_enqueue_scripts', function(){
+  if( is_page_template('page-accesso.php') ){
+    wp_enqueue_style('speedycopy-auth', get_stylesheet_directory_uri() . '/assets/css/auth.css', ['speedycopy-app'], filemtime(get_stylesheet_directory() . '/assets/css/auth.css'));
+  }
+});
+
 // Container helper
 function speedycopy_react_container_open($class='') { echo '<div class="sc-container '.esc_attr($class).'">'; }
 function speedycopy_react_container_close() { echo '</div>'; }

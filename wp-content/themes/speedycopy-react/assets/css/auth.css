@@ -1,0 +1,19 @@
+/* Auth page styles */
+.sc-auth { padding:80px 24px 120px; }
+.sc-auth-inner { max-width:1040px; margin:0 auto; }
+.sc-auth-panels { display:grid; gap:60px; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); align-items:start; }
+.sc-auth-panel { background:var(--sc-surface); border:1px solid var(--sc-border); border-radius:28px; padding:48px 42px 54px; box-shadow:0 10px 40px -12px rgba(0,0,0,.25); position:relative; }
+.sc-auth-panel h2 { margin:0 0 24px; font-size:1.9rem; letter-spacing:-.5px; }
+.sc-auth-panel form p { margin:0 0 18px; }
+.sc-auth-panel input[type=text],
+.sc-auth-panel input[type=password],
+.sc-auth-panel input[type=email] { width:100%; padding:14px 16px; border:1px solid var(--sc-border); background:var(--sc-surface-alt, #fff); border-radius:14px; font:inherit; }
+.sc-auth-panel input:focus { outline:2px solid var(--sc-primary); outline-offset:2px; }
+.sc-auth-panel .sc-small-info { font-size:.78rem; color:var(--sc-muted); margin:6px 0 0; }
+.sc-auth-panel.is-hidden { display:none; }
+.sc-auth-alt { margin-top:10px; }
+.sc-auth .sc-btn { width:100%; justify-content:center; }
+@media (max-width:720px){
+  .sc-auth-panels { gap:34px; }
+  .sc-auth-panel { padding:40px 32px 46px; }
+}

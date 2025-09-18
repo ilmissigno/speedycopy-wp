@@ -32,10 +32,9 @@ document.addEventListener('click', e => {
   }
 });
 
-// Cart quantity component
+// Cart + generic quantity component
 (function(){
   const cartForm = document.querySelector('.woocommerce-cart-form');
-  if(!cartForm) return;
   let updateTimer;
   const triggerUpdate = () => {
     if(!cartForm) return;
@@ -45,47 +44,44 @@ document.addEventListener('click', e => {
     cartForm.requestSubmit ? cartForm.requestSubmit(btn) : cartForm.submit();
   };
   const schedule = () => {
+    if(!cartForm) return; // solo nel carrello
     clearTimeout(updateTimer);
-  updateTimer = setTimeout(triggerUpdate, 400);
+    updateTimer = setTimeout(triggerUpdate, 400);
   };
+
   document.addEventListener('click', e => {
     const decr = e.target.closest('[data-qty-decr]');
     const incr = e.target.closest('[data-qty-incr]');
-    if(decr || incr){
-      const wrap = e.target.closest('[data-qty-wrapper]');
-      if(!wrap) return;
-      const input = wrap.querySelector('[data-qty-input]');
-      if(!input) return;
-      const current = parseInt(input.value||'0',10);
-      const min = parseInt(input.getAttribute('min')||'0',10);
-      const max = parseInt(input.getAttribute('max')||'0',10);
-      if(decr) {
-        if(current>min) {
-          input.value = current-1;
-        } else {
-          input.value = min; // non scendere sotto min
-        }
-      } else if(incr){
-        if(!isNaN(max) && max>0) {
-          if(current < max) input.value = current+1; else input.value = max;
-        } else {
-          input.value = current+1;
-        }
+    if(!decr && !incr) return;
+    const wrap = e.target.closest('[data-qty-wrapper]');
+    if(!wrap) return;
+    const input = wrap.querySelector('[data-qty-input], input.qty');
+    if(!input) return;
+    const current = parseInt(input.value||'0',10);
+    const min = parseInt(input.getAttribute('min')||'0',10);
+    const max = parseInt(input.getAttribute('max')||'0',10);
+    if(decr) {
+      input.value = current>min ? current-1 : min;
+    } else if(incr){
+      if(!isNaN(max) && max>0) {
+        input.value = current < max ? current+1 : max;
+      } else {
+        input.value = current+1;
       }
-      input.dispatchEvent(new Event('change', {bubbles:true}));
-      schedule();
     }
+    input.dispatchEvent(new Event('change', {bubbles:true}));
+    schedule();
   });
+
   document.addEventListener('change', e => {
-    if(e.target.matches('[data-qty-input]')){
-      const input = e.target;
-      const min = parseInt(input.getAttribute('min')||'1',10);
-      const max = parseInt(input.getAttribute('max')||'0',10);
-      let val = parseInt(input.value||min,10);
-      if(isNaN(val) || val < min) val = min;
-      if(max>0 && val>max) val = max;
-      input.value = val;
-      schedule();
-    }
+    if(!e.target.matches('[data-qty-input], input.qty')) return;
+    const input = e.target;
+    const min = parseInt(input.getAttribute('min')||'1',10);
+    const max = parseInt(input.getAttribute('max')||'0',10);
+    let val = parseInt(input.value||min,10);
+    if(isNaN(val) || val < min) val = min;
+    if(max>0 && val>max) val = max;
+    input.value = val;
+    schedule();
   });
 })();

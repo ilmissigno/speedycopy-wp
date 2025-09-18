@@ -1,0 +1,52 @@
+# WordPress core (non serve versionarlo, lo gestisci da WP o da deploy)
+wp-admin/
+wp-includes/
+
+# File di configurazione sensibili
+wp-config.php
+wp-config-*.php
+
+# Log, cache e backup
+*.log
+*.sql
+*.tar.gz
+*.zip
+*.bak
+*.tmp
+
+# Sistema di cache comuni
+wp-content/cache/
+wp-content/backups/
+wp-content/upgrade/
+wp-content/uploads/wpallimport/temp/
+
+# Uploads (spesso meglio tenerli fuori da git, li gestisce il server/CDN)
+wp-content/uploads/
+
+# Plugin e temi (puoi ignorare tutti e versionare solo quelli custom)
+wp-content/plugins/*
+!wp-content/plugins/custom-print-service/
+
+wp-content/themes/*
+!wp-content/themes/speedycopy-react/
+wp-content/languages/*
+
+# Vendor / Composer
+vendor/
+composer.lock
+
+# Node.js / build
+node_modules/
+npm-debug.log
+yarn-error.log
+*.map
+
+# IDE / editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db

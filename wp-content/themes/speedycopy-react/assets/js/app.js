@@ -1,11 +1,40 @@
 // Mobile nav toggle
-document.addEventListener('click', e => {
-  const btn = e.target.closest('[data-toggle-nav]');
-  if(btn){
-    const nav = document.getElementById('scMainNav');
-    nav.classList.toggle('is-open');
-  }
-});
+(function () {
+  const nav = document.getElementById('scMainNav');
+  const btn = document.querySelector('[data-toggle-nav]');
+  if (!nav || !btn) return;
+
+  const setOpen = (open) => {
+    nav.classList.toggle('is-open', open);
+    btn.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+    document.body.classList.toggle('sc-nav-lock', open);
+  };
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(!nav.classList.contains('is-open'));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!nav.classList.contains('is-open')) return;
+    if (e.target.closest('#scMainNav') || e.target.closest('[data-toggle-nav]')) return;
+    setOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980) setOpen(false);
+  });
+})();
 
 // Single product thumbnails switcher
 document.addEventListener('click', e => {

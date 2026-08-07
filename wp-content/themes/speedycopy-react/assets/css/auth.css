@@ -1,19 +1,182 @@
-/* Auth page styles */
-.sc-auth { padding:80px 24px 120px; }
-.sc-auth-inner { max-width:1040px; margin:0 auto; }
-.sc-auth-panels { display:grid; gap:60px; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); align-items:start; }
-.sc-auth-panel { background:var(--sc-surface); border:1px solid var(--sc-border); border-radius:28px; padding:48px 42px 54px; box-shadow:0 10px 40px -12px rgba(0,0,0,.25); position:relative; }
-.sc-auth-panel h2 { margin:0 0 24px; font-size:1.9rem; letter-spacing:-.5px; }
-.sc-auth-panel form p { margin:0 0 18px; }
-.sc-auth-panel input[type=text],
-.sc-auth-panel input[type=password],
-.sc-auth-panel input[type=email] { width:100%; padding:14px 16px; border:1px solid var(--sc-border); background:var(--sc-surface-alt, #fff); border-radius:14px; font:inherit; }
-.sc-auth-panel input:focus { outline:2px solid var(--sc-primary); outline-offset:2px; }
-.sc-auth-panel .sc-small-info { font-size:.78rem; color:var(--sc-muted); margin:6px 0 0; }
-.sc-auth-panel.is-hidden { display:none; }
-.sc-auth-alt { margin-top:10px; }
-.sc-auth .sc-btn { width:100%; justify-content:center; }
-@media (max-width:720px){
-  .sc-auth-panels { gap:34px; }
-  .sc-auth-panel { padding:40px 32px 46px; }
+/* Auth / My Account login-register — SpeedyCopy */
+.sc-auth {
+  padding: 72px 24px 100px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(212, 175, 55, 0.16), transparent 42%),
+    radial-gradient(circle at 88% 8%, rgba(11, 61, 145, 0.12), transparent 40%),
+    var(--sc-bg, #f7faff);
 }
+
+.sc-auth-inner {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.sc-auth-brand {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.sc-auth-eyebrow {
+  margin: 0 0 8px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: var(--sc-primary, #0b3d91);
+  font-size: 1.15rem;
+}
+
+.sc-auth-heading {
+  margin: 0 0 10px;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  letter-spacing: -0.5px;
+  color: var(--sc-text, #0e1a2b);
+}
+
+.sc-auth-lead {
+  margin: 0 auto;
+  max-width: 40ch;
+  color: var(--sc-muted, #5a6775);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.sc-auth-panels {
+  display: block;
+}
+
+.sc-auth-panel {
+  background: var(--sc-surface, #fff);
+  border: 1px solid var(--sc-border, #d5dfec);
+  border-radius: 28px;
+  padding: 42px 36px 46px;
+  box-shadow: 0 10px 40px -12px rgba(12, 53, 119, 0.18);
+}
+
+.sc-auth-panel h2 {
+  margin: 0 0 22px;
+  font-size: 1.45rem;
+  letter-spacing: -0.3px;
+  color: var(--sc-primary, #0b3d91);
+}
+
+.sc-auth-panel form p {
+  margin: 0 0 16px;
+}
+
+.sc-auth-panel label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.sc-auth-panel input[type='text'],
+.sc-auth-panel input[type='password'],
+.sc-auth-panel input[type='email'] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--sc-border, #d5dfec);
+  background: #fff;
+  border-radius: 14px;
+  font: inherit;
+}
+
+.sc-auth-panel input:focus {
+  outline: none;
+  border-color: var(--sc-primary, #0b3d91);
+  box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.18);
+}
+
+.sc-auth-remember {
+  display: flex;
+  align-items: center;
+}
+
+.sc-auth-remember .woocommerce-form__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  margin: 0;
+  cursor: pointer;
+}
+
+.sc-auth-panel .sc-small-info {
+  font-size: 0.86rem;
+  color: var(--sc-muted, #5a6775);
+  margin: 6px 0 0;
+}
+
+.sc-auth-panel.is-hidden {
+  display: none;
+}
+
+.sc-auth-forgot {
+  margin-top: 4px;
+}
+
+.sc-auth-alt {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--sc-border, #d5dfec);
+}
+
+.sc-auth .sc-btn,
+.sc-auth button.sc-btn {
+  width: 100%;
+  justify-content: center;
+  background: var(--sc-primary, #0b3d91);
+  color: #fff;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(11, 61, 145, 0.25);
+}
+
+.sc-auth .sc-btn:hover {
+  filter: brightness(1.1);
+}
+
+.sc-auth .sc-link,
+.sc-auth-alt a,
+.sc-auth-forgot a {
+  color: var(--sc-primary, #0b3d91);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sc-auth .sc-link:hover,
+.sc-auth-alt a:hover,
+.sc-auth-forgot a:hover {
+  text-decoration: underline;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce-notices-wrapper,
+.woocommerce-account:not(.logged-in) .woocommerce-message,
+.woocommerce-account:not(.logged-in) .woocommerce-error,
+.woocommerce-account:not(.logged-in) .woocommerce-info {
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce {
+  max-width: none;
+}
+
+@media (max-width: 560px) {
+  .sc-auth {
+    padding: 48px 16px 72px;
+  }
+
+  .sc-auth-panel {
+    padding: 32px 22px 36px;
+    border-radius: 22px;
+  }
+}
+
+.sc-page--auth .sc-page-content { margin: 0; }
+.woocommerce-account:not(.logged-in) .sc-container { padding-top: 0; padding-bottom: 0; max-width: none; }

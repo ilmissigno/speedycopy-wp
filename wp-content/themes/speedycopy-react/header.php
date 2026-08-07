@@ -9,18 +9,24 @@
 <header class="sc-header">
   <div class="sc-header-inner">
     <div class="sc-logo">
-      <a href="<?php echo esc_url(home_url('/')); ?>">
-        <?php if( function_exists('the_custom_logo') && has_custom_logo() ) { the_custom_logo(); } else { bloginfo('name'); } ?>
-      </a>
+      <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) : ?>
+        <?php the_custom_logo(); ?>
+      <?php else : ?>
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
+      <?php endif; ?>
     </div>
-    <nav class="sc-nav" id="scMainNav">
+    <button class="sc-nav-toggle" type="button" aria-label="<?php esc_attr_e( 'Apri menu', 'speedycopy-react' ); ?>" aria-controls="scMainNav" aria-expanded="false" data-toggle-nav>
+      <span class="sc-nav-toggle-bars" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+    <nav class="sc-nav" id="scMainNav" aria-label="<?php esc_attr_e( 'Menu principale', 'speedycopy-react' ); ?>">
     <?php wp_nav_menu([
       'theme_location'=>'primary',
       'container'=>false,
       'fallback_cb'=>'speedycopy_react_menu_fallback'
     ]); ?>
     </nav>
-    <button class="sc-nav-toggle" aria-label="Menu" data-toggle-nav>☰</button>
   </div>
 </header>
 <main class="sc-main">

@@ -25,6 +25,7 @@ if(!defined('ABSPATH')) exit; get_header(); ?>
                   <span><?php echo esc_html( $_product->get_name() ); ?></span>
                 </a>
               <?php } ?>
+              <?php echo wp_kses_post( wc_get_formatted_cart_item_data( $cart_item ) ); ?>
             </td>
             <td><?php echo WC()->cart->get_product_price( $_product ); ?></td>
             <td>

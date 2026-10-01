@@ -83,7 +83,8 @@ a:hover { color:#01143f; }
 .sc-card-thumb { display:block; border-radius:14px; overflow:hidden; margin-bottom:12px; }
 .sc-card-thumb img { transition:.5s transform, .5s filter; filter:saturate(.9); }
 .sc-card:hover .sc-card-thumb img { transform:scale(1.07) rotate(.3deg); filter:saturate(1.1); }
-.sc-card-title { font-size:1.05rem; margin:4px 0 6px; font-weight:600; letter-spacing:.3px; }
+.sc-card-title { font-size:1.05rem; margin:4px 0 6px; font-weight:600; letter-spacing:.3px; overflow-wrap:anywhere; word-break:break-word; hyphens:auto; }
+.sc-card, .sc-card > * { min-width:0; max-width:100%; }
 .sc-price, .sc-single-price { color:var(--sc-primary); font-weight:700; margin-bottom:10px; }
 .sc-price .amount, .sc-price bdi, .sc-price ins, .sc-price del { color:inherit; }
 .sc-card-product .sc-price,
